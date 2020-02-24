@@ -1,0 +1,129 @@
+<title>职工列表</title>
+
+<div class="layui-card layadmin-header">
+	<div class="layui-breadcrumb" lay-filter="breadcrumb">
+		<a lay-href="">主页</a>
+		<a><cite>职工管理</cite></a>
+		<a><cite>职工列表</cite></a>
+	</div>
+</div>
+
+<div class="layui-fluid">
+	<div class="layui-row layui-col-space15">
+		<div class="layui-col-md12">
+			<div class="layui-card">
+				<div class="layui-card-header">职工列表</div>
+				<div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="layadmin-userfront-formlist">
+					<div class="layui-form-item">
+						<div class="layui-inline">
+							<label class="layui-form-label">ID</label>
+							<div class="layui-input-block">
+								<input type="text" name="id" placeholder="请输入" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">用户名</label>
+							<div class="layui-input-block">
+								<input type="text" name="username" placeholder="请输入" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">邮箱</label>
+							<div class="layui-input-block">
+								<input type="text" name="email" placeholder="请输入" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">性别</label>
+							<div class="layui-input-block">
+								<select name="sex">
+									<option value="0">不限</option>
+									<option value="1">男</option>
+									<option value="2">女</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<button class="layui-btn layuiadmin-btn-useradmin" lay-submit lay-filter="LAY-user-front-search">
+								<i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+							</button>
+						</div>
+					</div>
+				</div>
+				<div class="layui-card-body">
+					<div style="padding-bottom: 10px;">
+						<button class="layui-btn layuiadmin-btn-useradmin" data-type="batchdel">删除</button>
+						<button class="layui-btn layuiadmin-btn-useradmin" data-type="add">添加</button>
+					</div>
+					<table class="layui-hide" id="test-table-autowidth" lay-filter="LAY-user-manage"></table>
+					<script type="text/html" id="test-table-toolbar-barDemo">
+					  <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+					  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+					</script>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	layui.use(['admin', 'table'], function() {
+		var table = layui.table;
+
+		table.render({
+			elem: '#test-table-autowidth',
+			url: './json/table/user.js',
+			cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+				,
+			cols: [
+				[{
+						field: 'id',
+						title: 'ID',
+						sort: true
+					}, {
+						field: 'username',
+						title: '用户名'
+					} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+					, {
+						field: 'sex',
+						title: '性别',
+						sort: true
+					}, {
+						field: 'city',
+						title: '城市'
+					}, {
+						field: 'sign',
+						title: '签名'
+					}, {
+						field: 'classify',
+						title: '职业',
+						align: 'center'
+					} //单元格内容水平居中
+					, {
+						field: 'experience',
+						title: '积分',
+						sort: true,
+						align: 'right'
+					} //单元格内容水平居中
+					, {
+						field: 'score',
+						title: '评分',
+						sort: true,
+						align: 'right'
+					}, {
+						field: 'wealth',
+						title: '财富',
+						sort: true,
+						align: 'right'
+					}, {
+						fixed: 'right',
+						title: '操作',
+						toolbar: '#test-table-toolbar-barDemo',
+						width: 150
+					}
+				]
+			],page: true
+		});
+
+	});
+</script>
