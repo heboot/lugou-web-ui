@@ -105,11 +105,16 @@ layui.define(['laytpl', 'layer'], function(exports){
         
         //其它异常
         else {
-          var errorText = [
-            '<cite>Error：</cite> ' + (res[response.msgName] || '返回状态码异常')
-            ,debug()
-          ].join('');
-          view.error(errorText);
+          // var errorText = 
+          //   '<cite>Error：</cite> ' + (res[response.msgName] || '返回状态码异常');
+          // view.error(errorText);
+		  
+		  layer.msg(res[response.msgName], {
+		  	offset: '15px',
+		  	icon: 2,
+		  	time: 1000
+		  }, function() {
+		  });
         }
         
         //只要 http 状态码正常，无论 response 的 code 是否正常都执行 success
